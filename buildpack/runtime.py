@@ -422,6 +422,7 @@ def _set_runtime_config(metadata, mxruntime_config, vcap_data, m2ee):
     )
     mxruntime_config.update(_get_custom_settings(metadata, mxruntime_config))
     mxruntime_config.update(_get_license_subscription())
+    mxruntime_config.update(metrics._configure_influx_registry(m2ee))
     mxruntime_config.update(_get_custom_runtime_settings())
 
 
