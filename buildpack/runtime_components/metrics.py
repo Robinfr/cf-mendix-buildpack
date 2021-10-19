@@ -98,7 +98,7 @@ def _micrometer_runtime_requirement(runtime_version):
         os.getenv("FORCE_ENABLE_MICROMETER_METRICS", "false")
     )
     # TODO: Confirm and update the runtime version which supports all metrics
-    runtime_version_supported = runtime_version >= MXVersion("9.7.0")
+    runtime_version_supported = runtime_version >= MXVersion("9.6.0")
 
     if force_enabled and runtime_version_supported:
         return True
