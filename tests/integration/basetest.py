@@ -287,9 +287,14 @@ class BaseTest(unittest.TestCase):
         assert str(output).find(process) >= 0
 
     def assert_running(self, process):
-        output = self.run_on_container("ps aux | grep {}".format(process))
+        output = self.run_on_container("ps aux | grep '{}'".format(process))
         assert output is not None
         assert str(output).find(process) >= 0
+
+    def assert_not_running(self, process):
+        output = self.run_on_container("ps aux | grep '{}'".format(process))
+        assert output is not None
+        assert str(output).find(process) == 0
 
     def _cmd(self, command):
         try:
@@ -326,6 +331,7 @@ class BaseTest(unittest.TestCase):
         )
 
     def run_on_container(self, command, target_container=None):
+        print(command)
         if target_container is None:
             target_container = self._container_id
 
