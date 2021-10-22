@@ -91,16 +91,16 @@ def get_metrics_url():
 
 def _micrometer_runtime_requirement(runtime_version):
     """Check if metrics via micrometer is supported by runtime."""
-    # TODO: force_enabled is a temporary flag to ensure we do NOT enable
+    # TODO: force_disabled is a temporary flag to ensure disable micrometer
     # metrics collections via micrometer till we are ready to do the switchover
     # from admin port metrics to micrometer based metrics
-    force_enabled = strtobool(
-        os.getenv("FORCE_ENABLE_MICROMETER_METRICS", "false")
+    force_disabled = strtobool(
+        os.getenv("FORCE_DISABLE_MICROMETER_METRICS", "false")
     )
     # TODO: Confirm and update the runtime version which supports all metrics
     runtime_version_supported = runtime_version >= MXVersion("9.6.0")
 
-    if force_enabled and runtime_version_supported:
+    if not force_disabled and runtime_version_supported:
         return True
 
     return False
