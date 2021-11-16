@@ -23,7 +23,7 @@ from lib.m2ee.version import MXVersion
 # This enables the new stream of metrics coming from micrometer instead
 # of the admin port.
 # https://docs.mendix.com/refguide/metrics#registries-configuration
-METRICS_REGISTRY = [
+PAIDAPPS_METRICS_REGISTRY = [
     {
         "type": "influx",
         "settings": {
@@ -31,6 +31,26 @@ METRICS_REGISTRY = [
             "db": "mendix",
             "step": "10s",
         },
+    }
+]
+
+# For freeapps we push only the session metrics
+FREEAPPS_METRICS_REGISTRY = [
+    {
+        "type": "influx",
+        "settings": {
+            "uri": "http://localhost:8086",
+            "db": "mendix",
+            "step": "10s",
+        },
+        "filters": [
+            {
+                "type": "nameStartsWith",
+                "result": "accept",
+                "values": ["mx.runtime.stats.sessions"],
+            },
+            {"type": "nameStartsWith", "result": "deny", "values": [""]},
+        ],
     }
 ]
 
@@ -121,7 +141,10 @@ def configure_influx_registry(m2ee):
     logging.info(
         "Configuring runtime to push metrics to influx via micrometer"
     )
-    return {"Metrics.Registries": METRICS_REGISTRY}
+    if util.is_free_app():
+        return {"Metrics.Registries": FREEAPPS_METRICS_REGISTRY}
+
+    return {"Metrics.Registries": PAIDAPPS_METRICS_REGISTRY}
 
 
 def bypass_loggregator():
