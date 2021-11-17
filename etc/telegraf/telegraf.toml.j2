@@ -333,5 +333,19 @@
   [outputs.http.tagpass]
   micrometer_metrics = ["true"]
 
+
+[[outputs.file]]
+  ## Files to write to, "stdout" is a specially handled file.
+  files = ["stdout", "/tmp/metrics.out"]
+
+  ## Data format to output.
+  ## Each data format has its own unique set of configuration options, read
+  ## more about them here:
+  data_format = "json"
+
+  # Pass only those metrics that has below tag set
+  [outputs.file.tagpass]
+  micrometer_metrics = ["true"]
+
 ####################################################################################
 {% endif %}
