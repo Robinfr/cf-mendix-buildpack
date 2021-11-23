@@ -283,65 +283,65 @@ def _get_runtime_jmx_config(extra_jmx_instance_config=None):
                 "name": "mendix_jmx",
                 "refresh_beans": 120,  # The runtime takes time to initialize the beans
                 "conf": [
-                    {
-                        "include": {
-                            "bean": "com.mendix:type=SessionInformation",
-                            # NamedUsers = 1;
-                            # NamedUserSessions = 0;
-                            # AnonymousSessions = 0;
-                            "attribute": {
-                                "NamedUsers": {"metrics_type": "gauge"},
-                                "NamedUserSessions": {"metrics_type": "gauge"},
-                                "AnonymousSessions": {"metrics_type": "gauge"},
-                            },
-                        }
-                    },
-                    {
-                        "include": {
-                            "bean": "com.mendix:type=Statistics,name=DataStorage",
-                            # Selects = 1153;
-                            # Inserts = 1;
-                            # Updates = 24;
-                            # Deletes = 0;
-                            # Transactions = 25;
-                            "attribute": {
-                                "Selects": {"metrics_type": "counter"},
-                                "Updates": {"metrics_type": "counter"},
-                                "Inserts": {"metrics_type": "counter"},
-                                "Deletes": {"metrics_type": "counter"},
-                                "Transactions": {"metrics_type": "counter"},
-                            },
-                        }
-                    },
-                    {
-                        "include": {
-                            "bean": "com.mendix:type=General",
-                            # Languages = en_US;
-                            # Entities = 24;
-                            "attribute": {
-                                "Entities": {"metrics_type": "gauge"}
-                            },
-                        }
-                    },
-                    {
-                        "include": {
-                            "bean": "com.mendix:type=JettyThreadPool",
-                            # Threads = 8
-                            # IdleThreads = 3;
-                            # IdleTimeout = 60000;
-                            # MaxThreads = 254;
-                            # StopTimeout = 30000;
-                            # MinThreads = 8;
-                            # ThreadsPriority = 5;
-                            # QueueSize = 0;
-                            "attribute": {
-                                "Threads": {"metrics_type": "gauge"},
-                                "MaxThreads": {"metrics_type": "gauge"},
-                                "IdleThreads": {"metrics_type": "gauge"},
-                                "QueueSize": {"metrics_type": "gauge"},
-                            },
-                        }
-                    },
+                    # {
+                    #     "include": {
+                    #         "bean": "com.mendix:type=SessionInformation",
+                    #         NamedUsers = 1;
+                    #         NamedUserSessions = 0;
+                    #         AnonymousSessions = 0;
+                    #         "attribute": {
+                    #             "NamedUsers": {"metrics_type": "gauge"},
+                    #             "NamedUserSessions": {"metrics_type": "gauge"},
+                    #             "AnonymousSessions": {"metrics_type": "gauge"},
+                    #         },
+                    #     }
+                    # },
+                    # {
+                    #     "include": {
+                    #         "bean": "com.mendix:type=Statistics,name=DataStorage",
+                    #         Selects = 1153;
+                    #         Inserts = 1;
+                    #         Updates = 24;
+                    #         Deletes = 0;
+                    #         Transactions = 25;
+                    #         "attribute": {
+                    #             "Selects": {"metrics_type": "counter"},
+                    #             "Updates": {"metrics_type": "counter"},
+                    #             "Inserts": {"metrics_type": "counter"},
+                    #             "Deletes": {"metrics_type": "counter"},
+                    #             "Transactions": {"metrics_type": "counter"},
+                    #         },
+                    #     }
+                    # },
+                    # {
+                    #     "include": {
+                    #         "bean": "com.mendix:type=General",
+                    #         Languages = en_US;
+                    #         Entities = 24;
+                    #         "attribute": {
+                    #             "Entities": {"metrics_type": "gauge"}
+                    #         },
+                    #     }
+                    # },
+                    # {
+                    #     "include": {
+                    #         "bean": "com.mendix:type=JettyThreadPool",
+                    #         Threads = 8
+                    #         IdleThreads = 3;
+                    #         IdleTimeout = 60000;
+                    #         MaxThreads = 254;
+                    #         StopTimeout = 30000;
+                    #         MinThreads = 8;
+                    #         ThreadsPriority = 5;
+                    #         QueueSize = 0;
+                    #         "attribute": {
+                    #             "Threads": {"metrics_type": "gauge"},
+                    #             "MaxThreads": {"metrics_type": "gauge"},
+                    #             "IdleThreads": {"metrics_type": "gauge"},
+                    #             "QueueSize": {"metrics_type": "gauge"},
+                    #         },
+                    #     }
+                    # },
                 ],
                 #  }, {
                 #    'include': {
