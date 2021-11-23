@@ -261,6 +261,7 @@ class M2EE:
         # if errors, abort.
 
         config = copy.deepcopy(self.config.get_runtime_config())
+        logger.info("******** -- Runtime config --******** : \n %s", config)
         if database_password:
             config["DatabasePassword"] = database_password
 
