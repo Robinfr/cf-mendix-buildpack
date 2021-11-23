@@ -131,7 +131,7 @@ def _enable_mx_java_agent(m2ee):
     # If not explicitly set, default to StatsD
     try:
         util.upsert_custom_runtime_setting(
-            m2ee, "com.mendix.metrics.Type", "statsd"
+            m2ee, "com.mendix.metrics.Type", "micrometer"
         )
     except ValueError:
         logging.debug(
